@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBN - CENTRAL BUSINESS NACALA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: url('imagens/Carpintaria.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .mae {
+            width: 100%;
+            max-width: 1100px;
+            background-color: whitesmoke;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            margin: 20px 0;
+        }
+
+        .irmao {
+            background: whitesmoke;
+            padding: 25px;
+            text-align: center;
+            border-bottom: 5px solid rgb(39, 38, 38);
+        }
+
+        .irmao h1 {
+            font-size: 1.5rem;
+            color: #0f2f66;
+        }
+
+        .tio {
+            padding: 30px;
+        }
+
+        .tia {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .sobrinho {
+            margin-bottom: 18px;
+        }
+
+        .sobrinho label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .sobrinho input, 
+        .sobrinho select, 
+        .sobrinho textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgb(176, 176, 176);
+            border-radius: 6px;
+            background: white;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .sobrinho input:focus, 
+        .sobrinho select:focus, 
+        .sobrinho textarea:focus {
+            border-color: #0056b3;
+        }
+
+        .sobrinho textarea {
+            resize: vertical;
+            height: 90px;
+        }
+
+        /* Área de Preview da Foto de Perfil */
+        .primo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 8px;
+        }
+
+        .prima {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #0f2f66;
+            background-color: #ddd;
+        }
+
+        .genro {
+            border-radius: 8px;
+            background-color: blue;
+            color: white;
+            display: block;
+            margin: 30px auto 0;
+            padding: 14px 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .genro:hover {
+            background-color: #003d82;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .tia { grid-template-columns: 1fr; gap: 15px; }
+            .tio { padding: 20px; }
+            .irmao h1 { font-size: 1.2rem; }
+            .genro { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mae">
+        <div class="irmao">
+            <h1>FORMULÁRIO DE REGISTO PARA PRESTADOR</h1>
+        </div>
+        
+        <form class="tio" id="formPrestador">
+            <div class="tia">
+        
+                <div>
+                    <div class="sobrinho">
+                        <label>Foto de Perfil</label>
+                         <div class="primo">
+                            <img id="previewAvatar" class="prima" src="imagens/camera.jpg" alt="">
+                            <span style="font-size:0.85rem; color:#666;">Foto do seu perfil comercial</span>
+                        </div>
+                        <input type="file" id="fotoPerfilInput" accept="image/*" required>
+                       
+                    </div>
+                    <div class="sobrinho">
+                        <label>Nome Completo do Responsável</label>
+                        <input type="text" id="nome" placeholder="Digite seu nome completo" required>
+                    </div>
+                    <div class="sobrinho">
+                        <label>Número / E-mail de Registo</label>
+                        <input type="text" id="contacto" placeholder="Digite seu número ou e-mail" required>
+                    </div>
+                    <div class="sobrinho">
+                        <label>Bairro em Nacala</label>
+                        <select id="bairro" required>
+                            <option value="">Selecione o Bairro</option>
+                            <option value="Bloco 1">Bloco 1</option>
+                            <option value="Mathapue">Mathapue</option>
+                            <option value="Triângulo">Triângulo</option>
+                            <option value="Mocone">Mocone</option>
+                            <option value="Juma">Juma</option>
+                            <option value="Paraíso 2">Paraíso 2</option>
+                        </select>
+                    </div>
+                    <div class="sobrinho">
+                        <label>Senha</label>
+                        <input type="password" id="senha" placeholder="Insira sua senha" required>
+                    </div>
+                    <div class="sobrinho">
+                        <label>Confirmar Senha</label>
+                        <input type="password" id="confirmaSenha" placeholder="Confirme sua senha" required>
+                    </div>
+                </div>
+
+ 
+                <div>
+                    <div class="sobrinho">
+                        <label>Nome Comercial / Oficina / Negócio</label>
+                        <input type="text" id="nomeComercial" placeholder="Ex: Carpintaria do Tio João" required>
+                    </div>
+                    <div class="sobrinho">
+                        <label>Número de WhatsApp para Clientes</label>
+                        <input type="text" id="whatsapp" placeholder="Ex: 841234567">
+                    </div>
+                    <div class="sobrinho">
+                        <label>Categoria de Serviço</label>
+                        <select id="categoria" required>
+                            <option value="">Selecione a Categoria</option>
+                            <option value="Carpintaria">Carpintaria</option>
+                            <option value="Mecânica">Mecânica</option>
+                            <option value="Canalização">Canalização</option>
+                            <option value="Alfaiataria">Alfaiataria</option>
+                            <option value="Eletricista">Eletricista</option>
+                        </select>
+                    </div>
+                    <div class="sobrinho">
+                        <label>Descrição dos Serviços Oferecidos</label> 
+                        <textarea id="descricao" placeholder="Descreva os serviços que realiza e preços aproximados" required></textarea>
+                    </div>
+                    <div class="sobrinho">
+                        <label>Fotos do Portfólio de Trabalhos</label>
+                        <input type="file" id="portfolioInput" multiple accept="image/*">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="genro">Submeter</button>
+        </form>
+    </div>
+
+    <script>
+        const fotoPerfilInput = document.getElementById('fotoPerfilInput');
+        const previewAvatar = document.getElementById('previewAvatar');
+        let fotoPerfilBase64 = 'imagens/perfil.jpeg'; // Padrão
+
+      
+        fotoPerfilInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    fotoPerfilBase64 = event.target.result;
+                    previewAvatar.src = fotoPerfilBase64;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+      
+        const formPrestador = document.getElementById('formPrestador');
+
+        formPrestador.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const senha = document.getElementById('senha').value;
+            const confirmaSenha = document.getElementById('confirmaSenha').value;
+            const nomeComercial = document.getElementById('nomeComercial').value.trim();
+            const nomeResponsavel = document.getElementById('nome').value.trim();
+            const whatsapp = document.getElementById('whatsapp').value.trim();
+            const bairro = document.getElementById('bairro').value;
+            const categoria = document.getElementById('categoria').value;
+            const descricao = document.getElementById('descricao').value.trim();
+
+            if (senha !== confirmaSenha) {
+                alert("As senhas não coincidem! Por favor, verifique.");
+                document.getElementById('confirmaSenha').focus();
+                return;
+            }
+
+   
+            const novoPrestador = {
+                id: Date.now(),
+                nomeComercial: nomeComercial,
+                nomeResponsavel: nomeResponsavel,
+                foto: fotoPerfilBase64,
+                whatsapp: `https://wa.me/258${whatsapp.replace(/\D/g,'')}`,
+                telefone: `tel:+258${whatsapp.replace(/\D/g,'')}`,
+                bairro: bairro,
+                categoria: categoria,
+                descricao: descricao,
+                servicos: [
+                    { nome: "Atendimento Geral / Orçamento", preco: "Sob consulta" },
+                    { nome: "Serviço Personalizado", preco: "Sob consulta" }
+                ]
+            };
+
+         
+            let prestadoresSalvos = JSON.parse(localStorage.getItem('cbn_prestadores')) || [];
+            prestadoresSalvos.unshift(novoPrestador); // Adiciona no início da lista
+
+         
+            localStorage.setItem('cbn_prestadores', JSON.stringify(prestadoresSalvos));
+
+            alert(`Parabéns, ${nomeComercial}! O seu registo foi concluído e o seu perfil já está disponível na página principal.`);
+            window.location.href = "Pagina principal.html";
+        });
+    </script>
+</body>
+</html>

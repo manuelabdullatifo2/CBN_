@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBN - CENTRAL BUSINESS NACALA</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('imagens/Carpintaria.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container-login {
+            width: 100%;
+            max-width: 450px;
+            background-color: whitesmoke;
+            border-radius: 16px;
+            padding: 35px 28px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .logo-login img {
+            width: 220px;
+            height: auto;
+            max-height: 100px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
+        /* Caixa de mensagem de erro ou sucesso */
+        .msg-box {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            margin-bottom: 18px;
+            display: none;
+            font-weight: 600;
+        }
+
+        .msg-erro {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .msg-sucesso {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        form {
+            width: 100%;
+        }
+
+        .form-grupo {
+            text-align: left;
+            margin-bottom: 18px;
+            width: 100%;
+        }
+
+        .form-grupo label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .form-grupo input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: #fff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-grupo input:focus {
+            border-color: #0056b3;
+            box-shadow: 0 0 5px rgba(0, 86, 179, 0.3);
+        }
+
+        .btn-entrar {
+            width: 100%;
+            padding: 12px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .btn-entrar:hover {
+            background-color: #003d82;
+            transform: translateY(-2px);
+        }
+
+        .links {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .links a {
+            color: #0f2f66;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+
+        .links a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .dica-login {
+            margin-top: 15px;
+            padding: 10px;
+            background: #e9ecef;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            color: #555;
+            text-align: left;
+            width: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+
+            .container-login {
+                padding: 25px 18px;
+            }
+
+            .logo-login img {
+                width: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container-login">
+        <div class="logo-login">
+            <img src="imagens/Gemini_Generated_Image_lz5nrtlz5nrtlz5n-removebg-preview.png" alt="CBN Logo">
+        </div>
+
+        <!-- Caixa de Mensagem -->
+        <div id="msgBox" class="msg-box"></div>
+
+        <form id="formLogin">
+            <div class="form-grupo">
+                <label for="loginInput">Número / E-mail</label>
+                <input type="text" id="loginInput" placeholder="Insira seu número ou e-mail" required autocomplete="username">
+            </div>
+
+            <div class="form-grupo">
+                <label for="senhaInput">Senha</label>
+                <input type="password" id="senhaInput" placeholder="Digite sua senha" required autocomplete="current-password">
+            </div>
+
+            <button type="submit" class="btn-entrar">ENTRAR</button>
+        </form>
+
+        <div class="links">
+            <a href="Opcoes.html">Criar nova conta</a>
+            <a href="pagina principal.html">Voltar para Início</a>
+        </div>
+
+        <footer>
+            &copy; CBN 2026, Nacala-Porto. Todos os direitos reservados.
+        </footer>
+    </div>
+
+    <script>
+        // Perfis padrão de teste gravados caso o banco de dados ainda não tenha contas
+        const usuariosPadrao = [
+            {
+                id: 1,
+                contacto: "879258436",
+                email: "manuel@cbn.co.mz",
+                senha: "123456",
+                nome: "Mestre Manuel",
+                bairro: "Juma",
+                categoria: "Mecânica"
+            },
+            {
+                id: 2,
+                contacto: "871234567",
+                email: "inoque@cbn.co.mz",
+                senha: "123456",
+                nome: "Mestre Inoque",
+                bairro: "Paraíso 2",
+                categoria: "Canalização"
+            }
+        ];
+
+        // Função para obter utilizadores salvos no localStorage + padrão
+        function obterBaseUsuarios() {
+            const prestadoresCadastrados = JSON.parse(localStorage.getItem('cbn_prestadores')) || [];
+            const contasUsuarios = JSON.parse(localStorage.getItem('cbn_usuarios')) || [];
+            
+            return [...usuariosPadrao, ...prestadoresCadastrados, ...contasUsuarios];
+        }
+
+        const formLogin = document.getElementById('formLogin');
+        const msgBox = document.getElementById('msgBox');
+
+        function exibirMensagem(texto, tipo) {
+            msgBox.textContent = texto;
+            msgBox.className = `msg-box ${tipo === 'erro' ? 'msg-erro' : 'msg-sucesso'}`;
+            msgBox.style.display = 'block';
+        }
+
+        formLogin.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const usuarioInput = document.getElementById('loginInput').value.trim();
+            const senhaInput = document.getElementById('senhaInput').value.trim();
+
+            if (usuarioInput === "" || senhaInput === "") {
+                exibirMensagem("Por favor, preencha todos os campos.", "erro");
+                return;
+            }
+
+            const baseDados = obterBaseUsuarios();
+
+            // Validação dos dados introduzidos
+            const contaEncontrada = baseDados.find(u => {
+                const contactoMatch = u.contacto && u.contacto.toLowerCase() === usuarioInput.toLowerCase();
+                const emailMatch = u.email && u.email.toLowerCase() === usuarioInput.toLowerCase();
+                const nomeMatch = u.nomeComercial && u.nomeComercial.toLowerCase().includes(usuarioInput.toLowerCase());
+                
+                return (contactoMatch || emailMatch || nomeMatch);
+            });
+
+            if (!contaEncontrada) {
+                exibirMensagem("Nenhuma conta encontrada com este número ou e-mail.", "erro");
+                return;
+            }
+
+            // Verificar senha (se a conta não tiver senha definida no formulário antigo, usa '123456')
+            const senhaCorreta = contaEncontrada.senha || "123456";
+
+            if (senhaInput !== senhaCorreta) {
+                exibirMensagem("Senha incorreta. Tente novamente.", "erro");
+                return;
+            }
+
+            // Guarda a sessão do utilizador logado no navegador
+            sessionStorage.setItem('cbn_usuario_logado', JSON.stringify({
+                nome: contaEncontrada.nomeComercial || contaEncontrada.nome,
+                contacto: contaEncontrada.contacto,
+                bairro: contaEncontrada.bairro,
+                loginTime: new Date().toISOString()
+            }));
+
+            exibirMensagem("✅ Login efetuado com sucesso! Redirecionando...", "sucesso");
+
+            
+            setTimeout(() => {
+                window.location.href = "pagina principal.html";
+            }, 1200);
+        });
+    </script>
+</body>
+</html>

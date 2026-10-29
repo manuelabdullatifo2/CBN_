@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBN - CENTRAL BUSINESS NACALA</title>
+
+    <style>
+        :root {
+            --azul-escuro: #0f2f66;
+            --azul: #1a5db5;
+            --azul-claro: #5c93e8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgb(15, 15, 96);
+            padding: 10px 20px;
+            position: relative;
+            width: 100%;
+        }
+
+        .mae {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .irmao img {
+            width: 180px;
+            height: auto;
+            max-height: 70px;
+            object-fit: contain;
+        }
+
+        #tio {
+            display: none;
+            cursor: pointer;
+        }
+
+        #tio img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .tia {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .tia a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            opacity: 0.95;
+            transition: opacity 0.2s;
+        }
+
+        .tia a:hover {
+            opacity: 1;
+        }
+
+        .tia a.primo {
+            font-weight: 700;
+            border-bottom: 2px solid white;
+            padding-bottom: 3px;
+        }
+
+        .prima {
+            background-color: blue;
+            color: white !important;
+            padding: 8px 14px !important;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .primo2 {
+            background-color: rgb(4, 4, 82);
+            color: white !important;
+            padding: 8px 14px !important;
+            border-radius: 8px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .avo {
+            background: linear-gradient(180deg, rgb(146, 146, 237), rgb(169, 229, 229));
+            text-align: center; 
+            padding: 60px 6% 80px;
+        }
+
+        .avo h1 {
+            font-size: 2.3rem; 
+            font-weight: 800; 
+            color: var(--azul-escuro); 
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .avo h1 span {
+            color: var(--azul);
+        }
+
+        .avo p {
+            max-width: 680px; 
+            margin: 15px auto 0; 
+            color: #4b5563; 
+            font-size: 1.05rem; 
+            line-height: 1.6;
+        }
+
+        .bisavo {
+            margin-top: -30px; 
+            padding: 0 6%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .familia {
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .neto {
+            background: white; 
+            border-radius: 16px; 
+            padding: 22px 15px; 
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+            border: 1px solid #eef2ff;
+        }
+
+        .neto b {
+            font-size: 1.7rem; 
+            color: var(--azul-escuro); 
+            display: block;
+        }
+
+        .neto span {
+            font-size: 0.85rem; 
+            color: #6b7280;
+            margin-top: 4px; 
+            display: block;
+        }
+
+        .filho {
+            max-width: 1150px; 
+            margin: 0 auto; 
+            padding: 45px 6%;
+            width: 100%;
+        }
+
+        .sobrinho {
+            display: grid; 
+            grid-template-columns: 1.1fr 0.9fr; 
+            gap: 35px; 
+            align-items: center;
+        }
+
+        .sogro {
+            background: white; 
+            border-radius: 20px; 
+            padding: 32px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        }
+
+        .sogro h2 {
+            font-size: 1.4rem; 
+            font-weight: 800; 
+            color: var(--azul-escuro); 
+            margin-bottom: 12px;
+        }
+
+        .sogro p {
+            color: #555; 
+            line-height: 1.7; 
+            font-size: 0.95rem; 
+            margin-bottom: 12px;
+        }
+
+        .cunhado {
+            display: flex; 
+            gap: 12px; 
+            margin: 14px 0; 
+            font-size: 0.9rem; 
+            align-items: center;
+        }
+
+        .cunhado i {
+            width: 26px; 
+            height: 26px; 
+            background: #e0f0ff; 
+            color: var(--azul);
+            border-radius: 50%; 
+            display: grid; 
+            place-items: center; 
+            font-style: normal; 
+            font-weight: 900; 
+            flex-shrink: 0;
+        }
+
+        .genro {
+            width: 100%; 
+            height: 420px; 
+            object-fit: cover; 
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        .nora {
+            text-align: center; 
+            font-weight: 800; 
+            font-size: 1.4rem; 
+            color: var(--azul-escuro); 
+            margin: 55px 0 25px;
+        }
+
+        .gemeos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 22px;
+        }
+
+        .gemeo-card {
+            background: white; 
+            border-radius: 20px; 
+            padding: 26px; 
+            text-align: left;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06); 
+            border: 1px solid #f0f3ff;
+        }
+
+        .gemeo-icon {
+            width: 46px;
+            height: 46px; 
+            background: #eef4ff; 
+            border-radius: 12px;
+            display: grid; 
+            place-items: center; 
+            font-size: 1.4rem; 
+            margin-bottom: 14px;
+        }
+
+        .gemeo-card h3 {
+            font-size: 1rem; 
+            margin-bottom: 6px;
+            color: var(--azul-escuro);
+        }
+
+        .gemeo-card p {
+            font-size: 0.88rem; 
+            color: #6b7280; 
+            line-height: 1.6;
+        }
+
+        .padrasto {
+            background: linear-gradient(90deg, var(--azul-escuro), var(--azul));
+            border-radius: 20px; 
+            padding: 45px 25px; 
+            text-align: center; 
+            color: white; 
+            margin-top: 45px;
+        }
+
+        .padrasto h2 {
+            font-size: 1.7rem; 
+            margin-bottom: 10px;
+        }
+
+        .padrasto p {
+            opacity: 0.9; 
+            margin-bottom: 22px; 
+            font-size: 0.95rem;
+        }
+
+        .madrasta {
+            background: white; 
+            color: var(--azul-escuro); 
+            padding: 12px 28px;
+            border-radius: 30px; 
+            font-weight: 700; 
+            text-decoration: none; 
+            display: inline-block; 
+            transition: 0.3s;
+        }
+
+        .madrasta:hover {
+            transform: translateY(-2px); 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        footer {
+            padding: 20px;
+            color: white;
+            text-align: center;
+            font-size: 0.85rem;
+            background-color: rgb(72, 72, 187);
+            margin-top: auto;
+        }
+
+        :root {
+            --bg-body: #f4f6f9;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --header-bg: rgb(15, 15, 96);
+            --title-color: #0f2f66;
+            --subtext-color: #555;
+        }
+
+        body.dark-mode {
+            --bg-body: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --header-bg: #090938;
+            --title-color: #8bb4f8;
+            --subtext-color: #aaa;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .enteado {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .enteada {
+            background: var(--card-bg);
+            color: var(--text-color);
+            width: 100%;
+            max-width: 420px;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .afunhado-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        .madrinha { font-size: 24px; cursor: pointer; }
+        .padrinho { margin-bottom: 20px; }
+        .padrinho select { width: 100%; padding: 10px; border-radius: 6px; }
+        .compadre { display: flex; justify-content: space-between; align-items: center; }
+
+        @media(max-width: 900px) {
+            #tio { display: block; }
+            .tia {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%; left: 0;
+                width: 100%;
+                background-color: rgb(15, 15, 96);
+                padding: 20px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+                z-index: 1000;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            .tia.active { display: flex; }
+            .tia a, .tia button.prima { width: 100%; padding: 8px 0; font-size: 1rem; }
+            .familia { grid-template-columns: repeat(2, 1fr); }
+            .sobrinho { grid-template-columns: 1fr; }
+            .gemeos { grid-template-columns: 1fr; }
+            .avo h1 { font-size: 1.8rem; }
+            .genro { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="mae">
+        <div id="tio"><img src="imagens/icone-removebg-preview.png" alt="Menu"></div>
+        <div class="irmao"><img src="imagens/Gemini_Generated_Image_lz5nrtlz5nrtlz5n-removebg-preview.png" alt="CBN Logo"></div>
+    </div>
+
+    <nav class="tia" id="navMenu">
+        <a href="pagina principal.html"><span class="nav-icon">🏠</span> <span data-i18n="nav_inicio">Início</span></a>
+        <a href="comentarios.html"><span class="nav-icon">💬</span> <span data-i18n="nav_comentarios">Comentários</span></a>
+        <a href="sobre.html" class="primo"><span class="nav-icon">ℹ️</span> <span data-i18n="nav_sobre">Sobre</span></a>
+        <button class="primo2" id="openDefinicoes"><span class="nav-icon">⚙️</span> <span data-i18n="nav_definicoes">Definições</span></button>
+
+        <a href="Entrar.html" class="prima"><span class="nav-icon">🔑</span> <span data-i18n="nav_login">Entrar</span></a>
+        <a href="Opcoes.html" class="prima"><span class="nav-icon">👤</span> <span data-i18n="nav_cadastrar">Cadastrar-se</span></a>
+    </nav>
+</header>
+
+<div class="enteado" id="modalDefinicoes">
+    <div class="enteada">
+        <div class="afunhado-header">
+            <h2 data-i18n="def_modal_title">⚙️ Definições do Sistema</h2>
+            <span class="madrinha" id="closeDefinicoes">&times;</span>
+        </div>
+
+        <div class="padrinho">
+            <label data-i18n="def_lang_label">🌐 Idioma / Lingua:</label>
+            <select id="languageSelect">
+                <option value="pt">Português</option>
+                <option value="emakhua">Emakhua (Makhuwa)</option>
+                <option value="maconde">Maconde (Cimakondu)</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+
+        <div class="padrinho compadre">
+            <span style="font-weight:bold;" data-i18n="def_theme_label">🌙 Modo Escuro:</span>
+            <input type="checkbox" id="darkModeToggle" style="width:20px; height:20px; cursor:pointer;">
+        </div>
+
+        <div class="padrinho compadre">
+            <span style="font-weight:bold;" data-i18n="def_notif_label">🔔 Notificações:</span>
+            <input type="checkbox" id="notifToggle" style="width:20px; height:20px; cursor:pointer;">
+        </div>
+    </div>
+</div>
+        
+<main>
+    <section class="avo">
+        <h1 data-i18n="about_hero_title">Somos a <span>Central Business Nacala</span></h1>
+        <p data-i18n="about_hero_desc">Conectamos quem precisa de serviços com os melhores profissionais de Nacala-Porto. Tudo de forma simples, confiável e rápida.</p>
+    </section>
+
+    <div class="bisavo">
+        <div class="familia">
+            <div class="neto"><b>500</b><span data-i18n="stat_prof">Profissionais Cadastrados</span></div>
+            <div class="neto"><b>2.500</b><span data-i18n="stat_serv">Serviços Realizados</span></div>
+            <div class="neto"><b>4.8 ⭐</b><span data-i18n="stat_aval">Avaliação Média</span></div>
+            <div class="neto"><b>15+</b><span data-i18n="stat_bairros">Bairros Atendidos</span></div>
+        </div>
+    </div>
+
+    <div class="filho">
+        <div class="sobrinho">
+            <div class="sogro">
+                <h2 data-i18n="mission_title">Nossa Missão</h2>
+                <p data-i18n="mission_text1">Em Nacala, encontrar um bom profissional era difícil. Era preciso perguntar a vizinhos, ir de porta em porta. O CBN nasceu para resolver isso.</p>
+                <p data-i18n="mission_text2">Nossa missão é <strong>valorizar o trabalho local</strong> e dar visibilidade aos mestres que constroem nossa cidade todos os dias.</p>
+                
+                <div class="cunhado"><i data-i18n="check1_icon">✅</i> <span data-i18n="check1_text">Profissionais verificados e avaliados por clientes reais</span></div>
+                <div class="cunhado"><i data-i18n="check2_icon">✅</i> <span data-i18n="check2_text">Contato direto via WhatsApp, sem intermediários</span></div>
+                <div class="cunhado"><i data-i18n="check3_icon">✅</i> <span data-i18n="check3_text">Preços transparentes e localização por bairro</span></div>
+            </div>
+            <img class="genro" src="imagens/gemi.png" alt="Equipe CBN">
+        </div>
+
+        <h2 class="nora" data-i18n="values_title">Nossos Valores</h2>
+        <div class="gemeos">
+            <div class="gemeo-card">
+                <div class="gemeo-icon">🤝</div>
+                <h3 data-i18n="val1_title">Confiança Local</h3>
+                <p data-i18n="val1_desc">Todos os profissionais são de Nacala e recomendados pela comunidade. Verificamos cada perfil.</p>
+            </div>
+
+            <div class="gemeo-card">
+                <div class="gemeo-icon">⚡</div>
+                <h3 data-i18n="val2_title">Rapidez</h3>
+                <p data-i18n="val2_desc">Encontre e contacte um profissional em menos de 2 minutos, 24h por dia, direto no WhatsApp.</p>
+            </div>
+
+            <div class="gemeo-card">
+                <div class="gemeo-icon">💙</div>
+                <h3 data-i18n="val3_title">Impacto Social</h3>
+                <p data-i18n="val3_desc">Ajudamos mestres artesãos a terem mais clientes, mais visibilidade e renda digna para suas famílias.</p>
+            </div>
+        </div>
+
+        <div class="padrasto">
+            <h2 data-i18n="cta_title">Faz parte do CBN</h2>
+            <p data-i18n="cta_desc">É profissional em Nacala? Cadastre-se gratuitamente e receba clientes todos os dias no seu WhatsApp.</p>
+            <a href="Opcoes.html" class="madrasta" data-i18n="cta_btn">Quero me Cadastrar</a>
+        </div>
+    </div>
+</main>
+
+<footer>
+    &copy; CBN 2026. Todos os direitos reservados | Termos de Uso | Política de Privacidade
+</footer>
+
+<script>
+    const i18nGlobal = {
+        pt: {
+            nav_inicio: "Início",
+            nav_comentarios: "Comentários",
+            nav_sobre: "Sobre",
+            nav_definicoes: "Definições",
+            nav_login: "Entrar",
+            nav_cadastrar: "Cadastrar-se",
+            def_modal_title: "⚙️ Definições do Sistema",
+            def_lang_label: "🌐 Idioma / Lingua:",
+            def_theme_label: "🌙 Modo Escuro:",
+            def_notif_label: "🔔 Notificações:",
+            about_hero_title: "Somos a Central Business Nacala",
+            about_hero_desc: "Conectamos quem precisa de serviços com os melhores profissionais de Nacala-Porto. Tudo de forma simples, confiável e rápida.",
+            stat_prof: "Profissionais Cadastrados",
+            stat_serv: "Serviços Realizados",
+            stat_aval: "Avaliação Média",
+            stat_bairros: "Bairros Atendidos",
+            mission_title: "Nossa Missão",
+            mission_text1: "Em Nacala, encontrar um bom profissional era difícil. Era preciso perguntar a vizinhos, ir de porta em porta. O CBN nasceu para resolver isso.",
+            mission_text2: "Nossa missão é valorizar o trabalho local e dar visibilidade aos mestres que constroem nossa cidade todos os dias.",
+            check1_text: "Profissionais verificados e avaliados por clientes reais",
+            check2_text: "Contato direto via WhatsApp, sem intermediários",
+            check3_text: "Preços transparentes e localização por bairro",
+            values_title: "Nossos Valores",
+            val1_title: "Confiança Local",
+            val1_desc: "Todos os profissionais são de Nacala e recomendados pela comunidade. Verificamos cada perfil.",
+            val2_title: "Rapidez",
+            val2_desc: "Encontre e contacte um profissional em menos de 2 minutos, 24h por dia, direto no WhatsApp.",
+            val3_title: "Impacto Social",
+            val3_desc: "Ajudamos mestres artesãos a terem mais clientes, mais visibilidade e renda digna para suas famílias.",
+            cta_title: "Faz parte do CBN",
+            cta_desc: "É profissional em Nacala? Cadastre-se gratuitamente e receba clientes todos os dias no seu WhatsApp.",
+            cta_btn: "Quero me Cadastrar"
+        },
+        emakhua: {
+            nav_inicio: "Opacerya",
+            nav_comentarios: "Moolumo a atthu",
+            nav_sobre: "Mwaha ohuu",
+            nav_definicoes: "Mavitu a muteko",
+            nav_login: "Okelia",
+            nav_cadastrar: "Ilembihe",
+            def_modal_title: "⚙️ Mavitu a Eprograma",
+            def_lang_label: "🌐 Nthanthu / Nthume:",
+            def_theme_label: "🌙 Epiphi / Modo Escuro:",
+            def_notif_label: "🔔 Ihano sa Miteko:",
+            about_hero_title: "Hiyo Central Business Nacala",
+            about_hero_desc: "Ninaatunkula attu anatthuneya anamateko ooreera a M'Nacala.",
+            stat_prof: "Anamateko Olembihiwa",
+            stat_serv: "Miteko Siriwe",
+            stat_aval: "Oweha Wotapanyeya",
+            stat_bairros: "Mavuro Othe",
+            mission_title: "Muteko Ahu Mkulupale",
+            mission_text1: "M'Nacala, ophanya namuteko ooreera waari wotene. CBN eyarawe wira ekuxihe njuwa nnyo.",
+            mission_text2: "Muteko ahu ori otaphulela anamateko a m'malo mwahu.",
+            check1_text: "Anamateko ootheka ni oweha",
+            check2_text: "Olunga ni WhatsApp",
+            check3_text: "Musurukhu wotheka ni mavuro",
+            values_title: "Ithuka Sahu",
+            val1_title: "Emaleli ya M'malo",
+            val1_desc: "Anamateko othe ari a M'Nacala.",
+            val2_title: "Maphuro",
+            val2_desc: "Phanya namuteko moohipwa saana.",
+            val3_title: "Mkutano wa M'malo",
+            val3_desc: "Ninakhovelela anamateko wira akhale ni musurukhu.",
+            cta_title: "Ohela m'CBN",
+            cta_desc: "Uri namuteko m'Nacala? Ilembihe vanano.",
+            cta_btn: "Kinnilembiha"
+        },
+        maconde: {
+            nav_inicio: "Kutunduvanga",
+            nav_comentarios: "Mwaambodya",
+            nav_sobre: "Kwigunya",
+            nav_definicoes: "Kuwandiya",
+            nav_login: "Kwingila",
+            nav_cadastrar: "Kulilembya",
+            def_modal_title: "⚙️ Kuwandiya Kwa Ntengo",
+            def_lang_label: "🌐 Injogodya / Lulimi:",
+            def_theme_label: "🌙 Injinji / Mode Escuro:",
+            def_notif_label: "🔔 Dimanga dya Mavengo:",
+            about_hero_title: "Twava Central Business Nacala",
+            about_hero_desc: "Tutwala vafundi vambone m'Nacala-Porto.",
+            stat_prof: "Vafundi Valembyike",
+            stat_serv: "Mavengo Latendeka",
+            stat_aval: "Kulola Kwambone",
+            stat_bairros: "Vigano Vyamutela",
+            mission_title: "Inyano Yetu",
+            mission_text1: "Ku Nacala kwajali kupata fundi ambone. CBN itendekile kupata vyose.",
+            mission_text2: "Inyano yetu ni kulola ufundi wa vana va mmudzi.",
+            check1_text: "Vafundi valolike na vanu va mmudzi",
+            check2_text: "Kuva na WhatsApp na fundi moja kwa moja",
+            check3_text: "Malyo lavalile na vigano",
+            values_title: "Dimano Dyetu",
+            val1_title: "Kulimbikila kwa Mmudzi",
+            val1_desc: "Vafundi votang'a vakwetu va Nacala.",
+            val2_title: "Kuhanguva",
+            val2_desc: "Pata fundi kwa dakika mbili kupitila WhatsApp.",
+            val3_title: "Kikamaka",
+            val3_desc: "Tukadungula vafundi va mmudzi.",
+            cta_title: "Lijile mu CBN",
+            cta_desc: "Wako fundi ku Nacala? Tilembya mana ulembyike vyambone.",
+            cta_btn: "Nkulilembya"
+        },
+        en: {
+            nav_inicio: "Home",
+            nav_comentarios: "Reviews",
+            nav_sobre: "About",
+            nav_definicoes: "Settings",
+            nav_login: "Login",
+            nav_cadastrar: "Register",
+            def_modal_title: "⚙️ System Settings",
+            def_lang_label: "🌐 Language:",
+            def_theme_label: "🌙 Dark Mode:",
+            def_notif_label: "🔔 Notifications:",
+            about_hero_title: "We are Central Business Nacala",
+            about_hero_desc: "We connect those who need services with the best professionals in Nacala-Porto. Simple, reliable, and fast.",
+            stat_prof: "Registered Professionals",
+            stat_serv: "Completed Services",
+            stat_aval: "Average Rating",
+            stat_bairros: "Neighborhoods Served",
+            mission_title: "Our Mission",
+            mission_text1: "In Nacala, finding a good professional was hard. You had to ask neighbors, go door-to-door. CBN was born to solve this.",
+            mission_text2: "Our mission is to value local work and give visibility to the masters who build our city every day.",
+            check1_text: "Verified professionals evaluated by real clients",
+            check2_text: "Direct contact via WhatsApp, no intermediaries",
+            check3_text: "Transparent prices and neighborhood location",
+            values_title: "Our Values",
+            val1_title: "Local Trust",
+            val1_desc: "All professionals are from Nacala and recommended by the community. We verify every profile.",
+            val2_title: "Speed",
+            val2_desc: "Find and contact a professional in under 2 minutes, 24/7, directly on WhatsApp.",
+            val3_title: "Social Impact",
+            val3_desc: "We help master artisans get more clients, more visibility, and decent income for their families.",
+            cta_title: "Be part of CBN",
+            cta_desc: "Are you a professional in Nacala? Register for free and get clients every day on your WhatsApp.",
+            cta_btn: "I Want to Register"
+        }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('cbn_lang') || 'pt';
+        const savedDark = localStorage.getItem('cbn_dark') === 'true';
+        const savedNotif = localStorage.getItem('cbn_notif') !== 'false';
+
+        if (savedDark) {
+            document.body.classList.add('dark-mode');
+        }
+
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const languageSelect = document.getElementById('languageSelect');
+        const notifToggle = document.getElementById('notifToggle');
+
+        if (darkModeToggle) darkModeToggle.checked = savedDark;
+        if (languageSelect) languageSelect.value = savedLang;
+        if (notifToggle) notifToggle.checked = savedNotif;
+
+        mudarIdiomaGlobal(savedLang);
+
+        const modalDefinicoes = document.getElementById('modalDefinicoes');
+        const openDefinicoes = document.getElementById('openDefinicoes');
+        const closeDefinicoes = document.getElementById('closeDefinicoes');
+
+        if (openDefinicoes && modalDefinicoes) {
+            openDefinicoes.addEventListener('click', () => modalDefinicoes.style.display = 'flex');
+        }
+        if (closeDefinicoes && modalDefinicoes) {
+            closeDefinicoes.addEventListener('click', () => modalDefinicoes.style.display = 'none');
+        }
+
+        if (languageSelect) {
+            languageSelect.addEventListener('change', (e) => {
+                const lang = e.target.value;
+                localStorage.setItem('cbn_lang', lang);
+                mudarIdiomaGlobal(lang);
+            });
+        }
+
+        if (darkModeToggle) {
+            darkModeToggle.addEventListener('change', (e) => {
+                const isDark = e.target.checked;
+                localStorage.setItem('cbn_dark', isDark);
+                document.body.classList.toggle('dark-mode', isDark);
+            });
+        }
+
+        if (notifToggle) {
+            notifToggle.addEventListener('change', (e) => {
+                localStorage.setItem('cbn_notif', e.target.checked);
+            });
+        }
+
+        const menuIcon = document.getElementById('tio');
+        const navMenu = document.getElementById('navMenu');
+        if (menuIcon && navMenu) {
+            menuIcon.addEventListener('click', () => navMenu.classList.toggle('active'));
+        }
+
+        const menuLinks = navMenu.querySelectorAll('a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+    });
+
+    function mudarIdiomaGlobal(lang) {
+        const dictionary = i18nGlobal[lang] || i18nGlobal['pt'];
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (dictionary[key]) {
+                el.textContent = dictionary[key];
+            }
+        });
+    }
+</script>
+</body>
+</html>

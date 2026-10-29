@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBN - CENTRAL BUSINESS NACALA</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+        background: url('imagens/Carpintaria.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 1s ease-in-out; 
+    }
+
+    body.loaded {
+        opacity: 1;
+    }
+
+    .Pai {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        padding: 20px;
+        width: 100%;
+        max-width: 800px;
+    }
+
+    .logo2 img {
+        max-width: 600px;
+        height: auto;
+        margin-bottom: 15px;
+    }
+
+    .Pai h1 {
+        font-size: 2.5rem;
+        line-height: 1.2;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    .Pai h3 {
+        font-size: 1.2rem;
+        font-weight: normal;
+        margin-bottom: 20px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    }
+
+    .btn {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 30px;
+        color: white;
+        text-decoration: none;
+        text-align: center;
+        border-radius: 8px;
+        font-weight: bold;
+        background-color: #0056b3;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn:hover {
+        background-color: #003d82;
+        transform: translateY(-2px);
+    }
+
+    footer {
+        text-align: center;
+        color: white;
+        padding: 15px;
+        font-size: 0.9rem;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        width: 100%;
+        background: rgba(0, 0, 0, 0.4);
+    }
+
+  
+    @media (max-width: 768px) {
+        .Pai h1 {
+            font-size: 1.8rem;
+        }
+
+        .Pai h3 {
+            font-size: 1rem;
+        }
+
+        .logo2 img {
+            max-width: 90px;
+        }
+
+        .btn {
+            width: 80%;
+            max-width: 250px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<section class="Pai">
+    <div>
+        <div class="logo2"> 
+            <img src="imagens/Gemini_Generated_Image_lz5nrtlz5nrtlz5n-removebg-preview.png" alt="Logotipo CBN"> 
+        </div>
+        <h1>CONECTE-SE AO<br> COMÉRCIO DE NACALA-PORTO</h1>
+        <h3>Encontre, localize e contrate</h3>
+    </div>
+
+    <a href="pagina principal.html" class="btn" id="btnEntrar">ENTRAR</a>
+</section>
+
+<footer>
+    &copy; CBN 2026. Todos os direitos reservados | Termos de Uso | Política de Privacidade
+</footer>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        document.body.classList.add('loaded');
+    });
+
+    const btnEntrar = document.getElementById('btnEntrar');
+    btnEntrar.addEventListener('click', (event) => {
+        console.log("Usuário clicou para entrar na plataforma CBN.");
+        
+    });
+</script>
+
+</body>
+</html>

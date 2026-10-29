@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBN - CENTRAL BUSINESS NACALA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: url('imagens/Carpintaria.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .mae {
+            width: 100%;
+            max-width: 900px;
+            background-color: whitesmoke;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            margin: 20px 0;
+        }
+
+        .irmao {
+            background: whitesmoke; 
+            padding: 25px; 
+            text-align: center; 
+            border-bottom: 5px solid rgb(39, 38, 38); 
+        }
+
+        .irmao h1 {
+            font-size: 1.4rem;
+            color: #0f2f66;
+        }
+
+        .tio { 
+            padding: 30px; 
+        }
+
+        .tia { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr;
+            gap: 25px; 
+        }
+
+        .sobrinho { 
+            margin-bottom: 18px; 
+        }
+
+        .sobrinho label { 
+            display: block; 
+            margin-bottom: 6px; 
+            font-weight: bold; 
+            font-size: 0.9rem; 
+            color: #333;
+        }
+
+        .sobrinho input, 
+        .sobrinho select {
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid rgb(176, 176, 176); 
+            border-radius: 6px; 
+            background: white;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .sobrinho input:focus, 
+        .sobrinho select:focus {
+            border-color: #0056b3;
+        }
+
+        .primo { 
+            display: flex;
+            gap: 20px;
+            margin-top: 5px;
+        }
+
+        .primo label {
+            font-weight: normal;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .genro { 
+            border-radius: 8px;
+            background-color: blue;
+            color: white;
+            display: block; 
+            margin: 30px auto 0; 
+            padding: 14px 50px; 
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .genro:hover {
+            background-color: #003d82;
+            transform: translateY(-2px);
+        }
+    
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .tia { 
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .tio {
+                padding: 20px;
+            }
+
+            .irmao h1 {
+                font-size: 1.1rem;
+            }
+
+            .genro {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mae">
+        <div class="irmao">
+            <h1>FORMULÁRIO DE REGISTO DE CLIENTE</h1>
+        </div>
+        
+        <form class="tio" id="formCliente">
+            <div class="tia">
+               
+                <div>
+                    <div class="sobrinho">
+                        <label>Nome Completo</label>
+                        <input type="text" id="nome" placeholder="Digite seu nome completo" required>
+                    </div>
+                    <div class="sobrinho">
+                        <label>Número / E-mail</label>
+                        <input type="text" id="contacto" placeholder="Digite seu número ou e-mail" required>
+                    </div>
+                    <div class="sobrinho">
+                        <label>Bairro</label>
+                        <select id="bairro" required>
+                            <option value="">Selecione o seu bairro</option>
+                            <option value="Mathapue">Mathapue</option>
+                            <option value="Bloco 1">Bloco 1</option>
+                            <option value="Onthupaia">Onthupaia</option>
+                            <option value="Juma">Juma</option>
+                            <option value="Mocone">Mocone</option>
+                        </select>
+                    </div>
+                    <div class="sobrinho">
+                        <label>Sexo</label>
+                        <div class="primo">
+                            <label><input type="radio" name="sexo" value="Masculino" required> Masculino</label>
+                            <label><input type="radio" name="sexo" value="Feminino" required> Feminino</label>
+                        </div>
+                    </div>
+                </div>
+
+             
+                <div>
+                    <div class="sobrinho">
+                        <label>Senha</label>
+                        <input type="password" id="senha" placeholder="Insira sua senha" required>
+                    </div>
+                    <div class="sobrinho">
+                        <label>Confirmar Senha</label>
+                        <input type="password" id="confirmaSenha" placeholder="Confirme sua senha" required>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="genro">Submeter</button>
+        </form>
+    </div>
+
+    <script>
+        const formCliente = document.getElementById('formCliente');
+
+        formCliente.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const nome = document.getElementById('nome').value.trim();
+            const contacto = document.getElementById('contacto').value.trim();
+            const bairro = document.getElementById('bairro').value;
+            const sexoSelecionado = document.querySelector('input[name="sexo"]:checked');
+            const sexo = sexoSelecionado ? sexoSelecionado.value : "";
+            const senha = document.getElementById('senha').value;
+            const confirmaSenha = document.getElementById('confirmaSenha').value;
+
+            // Validação de correspondência de senhas
+            if (senha !== confirmaSenha) {
+                alert("As senhas não coincidem! Por favor, verifique.");
+                document.getElementById('confirmaSenha').focus();
+                return;
+            }
+
+            // Obter base de dados existente no localStorage
+            let usuarios = JSON.parse(localStorage.getItem('cbn_usuarios')) || [];
+
+            // Verificar se o contacto ou e-mail já está registado
+            const existe = usuarios.some(u => u.contacto.toLowerCase() === contacto.toLowerCase());
+            if (existe) {
+                alert("Este número ou e-mail já se encontra registado no sistema!");
+                document.getElementById('contacto').focus();
+                return;
+            }
+
+            // Criar novo objeto de utilizador
+            const novoUtilizador = {
+                id: Date.now(),
+                nomeComercial: nome, // Compatível com o sistema de login da página principal
+                contacto: contacto,
+                bairro: bairro,
+                sexo: sexo,
+                senha: senha,
+                dataRegisto: new Date().toISOString()
+            };
+
+          
+            usuarios.push(novoUtilizador);
+            localStorage.setItem('cbn_usuarios', JSON.stringify(usuarios));
+
+            // Iniciar sessão automaticamente
+            sessionStorage.setItem('cbn_usuario_logado', JSON.stringify({
+                nome: novoUtilizador.nomeComercial,
+                contacto: novoUtilizador.contacto,
+                bairro: novoUtilizador.bairro
+            }));
+
+            alert(`Bem-vindo ao CBN, ${nome}! O seu registo foi concluído com sucesso.`);
+            window.location.href = "pagina principal.html";
+        });
+    </script>
+</body>
+</html>

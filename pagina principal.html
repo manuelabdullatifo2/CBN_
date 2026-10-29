@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBN - CENTRAL BUSINESS NACALA</title>
+
+    <style>
+        :root {
+            --bg-body: #f4f6f9;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --header-bg: rgb(15, 15, 96);
+            --title-color: #0f2f66;
+            --subtext-color: #555;
+            --input-bg: rgb(192, 201, 208);
+        }
+
+        body.dark-mode {
+            --bg-body: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --header-bg: #090938;
+            --title-color: #8bb4f8;
+            --subtext-color: #aaa;
+            --input-bg: #2d3748;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--header-bg);
+            padding: 10px 20px;
+            position: relative;
+            width: 100%;
+        }
+
+        .mae {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .irmao img {
+            width: 180px;
+            height: auto;
+            max-height: 70px;
+            object-fit: contain;
+        }
+
+        #tio {
+            display: none;
+            cursor: pointer;
+        }
+
+        #tio img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .tia {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .tia a, .tia button.prima {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            opacity: 0.95;
+            transition: opacity 0.2s;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tia a:hover, .tia button.prima:hover {
+            opacity: 1;
+        }
+
+        .tia a.primo {
+            font-weight: 700;
+            border-bottom: 2px solid white;
+            padding-bottom: 3px;
+        }
+
+        .nav-icon {
+            font-size: 1.1rem;
+            display: inline-block;
+        }
+
+        .prima {
+            background-color: blue !important;
+            color: white !important;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .primo2 {
+            background-color: rgb(4, 4, 82);
+            color: white !important;
+            padding: 8px 14px !important;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .avo {
+            text-align: center;
+            padding: 40px 20px 20px;
+        }
+
+        .avo h1 {
+            font-size: 1.8rem;
+            color: var(--title-color);
+            margin-bottom: 10px;
+        }
+
+        .avo p {
+            color: var(--subtext-color);
+            font-size: 1rem;
+        }
+
+        .bisavo {
+            display: flex;
+            max-width: 600px;
+            margin: 25px auto;
+            gap: 10px;
+            background-color: var(--input-bg);
+            padding: 8px;
+            border-radius: 8px;
+            align-items: center;
+        }
+
+        .bisavo input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 8px;
+            border-radius: 5px;
+            font-size: 0.95rem;
+        }
+
+        select {
+            border-radius: 5px;
+            padding: 8px;
+            border: none;
+            outline: none;
+            background-color: white;
+        }
+
+        .neto {
+            border-radius: 8px;
+            background-color: blue;
+            color: white;
+            border: none;
+            padding: 9px 16px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .neto:hover {
+            background-color: #0000aa;
+        }
+
+        h3 {
+            text-align: center;
+            color: var(--title-color);
+            margin: 20px 0;
+            font-size: 1.2rem;
+        }
+
+        .familia {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            padding: 20px 40px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .sobrinho {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sobrinho:hover {
+            transform: translateY(-4px);
+        }
+
+        .sobrinho img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+        }
+
+        .sobrinho .sogro {
+            padding: 15px;
+            font-size: 0.9rem;
+            flex-grow: 1;
+        }
+
+        .sobrinho h4 {
+            font-size: 0.95rem;
+            color: var(--title-color);
+            margin-bottom: 5px;
+        }
+
+        .sobrinho .cunhado {
+            color: var(--subtext-color);
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+
+        .genro {
+            padding: 10px;
+            border-radius: 0 0 8px 8px;
+            background-color: blue;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+
+        .genro:hover {
+            background-color: #0000aa;
+        }
+
+        .genro span {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .nora {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            max-width: 600px;
+            margin: 20px auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .nora h4 {
+            color: var(--title-color);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .nora p {
+            color: var(--subtext-color);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .padrasto {
+            padding: 8px 18px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .madrasta {
+            background: #1a5db5;
+            padding: 25px 5%;
+            margin-top: auto;
+        }
+
+        .madrasta h2 {
+            text-align: center;
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .gemeos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gemeo-item {
+            background: #f0f4ff;
+            border-radius: 12px;
+            padding: 15px 10px;
+            text-align: center;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .gemeo-item:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        .gemeo-icon {
+            width: 42px;
+            height: 42px;
+            margin: 0 auto 10px;
+            background: #dbe6ff;
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            font-size: 1.4rem;
+        }
+
+        .gemeo-item span {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #0f2f66;
+        }
+
+        footer {
+            padding: 20px;
+            color: white;
+            text-align: center;
+            font-size: 0.85rem;
+            background-color: rgb(72, 72, 187);
+        }
+
+        /* PAINEL DE DEFINIÇÕES */
+        .enteado {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .enteada {
+            background: var(--card-bg);
+            color: var(--text-color);
+            width: 100%;
+            max-width: 450px;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .afunhado-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        .afunhado-header h2 {
+            font-size: 1.3rem;
+            color: var(--title-color);
+        }
+
+        .madrinha {
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--subtext-color);
+        }
+
+        .padrinho {
+            margin-bottom: 20px;
+        }
+
+        .padrinho label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .padrinho select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background: #fff;
+            font-size: 0.95rem;
+        }
+
+        .compadre {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+        }
+
+        /* MODAL DE PERFIL */
+        .modal-perfil {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background-color: var(--bg-body);
+            max-width: 1000px;
+            margin: 20px auto;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 28px; font-weight: bold;
+            color: white; cursor: pointer; z-index: 2001;
+            background: rgba(0,0,0,0.4);
+            width: 40px; height: 40px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .perfil-container { padding: 25px; }
+
+        .badge-azul {
+            background: #0f2f66;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .perfil-top {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .foto-principal {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .card-contacto {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .btn-azul1, .ana {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            color: white;
+        }
+
+        .btn-azul1 { background-color: #25d366; }
+        .ana { background-color: #0056b3; }
+
+        .grid-baixo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .box {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .lista-servicos { list-style: none; }
+        .lista-servicos li {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .galeria img {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .map {
+            background: #eef2ff;
+            color: #0f2f66;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            #tio { display: block; }
+            .tia {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%; left: 0;
+                width: 100%;
+                background-color: var(--header-bg);
+                padding: 20px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+                z-index: 1000;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            .tia.active { display: flex; }
+            .tia a, .tia button.prima { width: 100%; padding: 8px 0; font-size: 1rem; }
+            .bisavo { flex-direction: column; background-color: #e0e6ed; padding: 12px; gap: 10px; }
+            .bisavo input, .bisavo select, .bisavo .neto { width: 100%; padding: 12px; }
+            .perfil-top, .grid-baixo { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="mae">
+        <div id="tio"><img src="imagens/icone-removebg-preview.png" alt="Menu"></div>
+        <div class="irmao"><img src="imagens/Gemini_Generated_Image_lz5nrtlz5nrtlz5n-removebg-preview.png" alt="CBN Logo"></div>
+    </div>
+
+    <nav class="tia" id="navMenu">
+        <a href="pagina principal.html" class="primo"><span class="nav-icon">🏠</span> <span data-i18n="nav_inicio">Início</span></a>
+        <a href="comentarios.html"><span class="nav-icon">💬</span> <span data-i18n="nav_comentarios">Comentários</span></a>
+        <a href="sobre.html"><span class="nav-icon">ℹ️</span> <span data-i18n="nav_sobre">Sobre</span></a>
+        <button class="primo2" id="openDefinicoes"><span class="nav-icon">⚙️</span> <span data-i18n="nav_definicoes">Definições</span></button>
+        
+        <a href="Entrar.html" class="prima"><span class="nav-icon">🔑</span> <span data-i18n="nav_login">Entrar</span></a>
+        <a href="Opcoes.html" class="prima"><span class="nav-icon">👤</span> <span data-i18n="nav_cadastrar">Cadastrar-se</span></a>
+    </nav>
+</header>
+
+<main>
+  <div class="avo">
+    <h1 data-i18n="hero_title">ENCONTRE OS MELHORES SERVIÇOS EM NACALA</h1>
+    <p data-i18n="hero_subtitle">Carpinteiros, Mecânicos, Alfaiates e Muito mais</p>
+    
+    <div class="bisavo">
+      <span>🔍</span>
+      <input type="text" id="searchInput" placeholder="Pesquisar serviço..." data-i18n-ph="ph_search">
+      <select id="bairroSelect">
+        <option value="" data-i18n="opt_all_bairros">Todos os Bairros</option>
+        <option value="Bloco 1">Bloco 1</option>
+        <option value="Mathapue">Mathapue</option>
+        <option value="Triângulo">Triângulo</option>
+        <option value="Mocone">Mocone</option>
+        <option value="Juma">Juma</option>
+        <option value="Paraíso 2">Paraíso 2</option>
+      </select>
+      <button class="neto" id="btnBuscar" data-i18n="btn_search">BUSCAR</button>
+    </div>
+  </div>
+
+  <hr style="border: 0; border-top: 1px solid #ccc; width: 80%; margin: 0 auto;">
+  
+  <h3 data-i18n="sec_services_title">ENCONTRE OS SERVIÇOS QUE PRECISA AGORA</h3>
+  
+  <div class="familia" id="gridServicos"></div>
+
+  <div class="nora" id="noResults">
+    <h4 data-i18n="no_res_title">Nenhum resultado encontrado</h4>
+    <p data-i18n="no_res_desc">Não encontramos nenhum profissional correspondente à sua pesquisa por termo ou bairro.</p>
+    <button class="padrasto" id="btnReset" data-i18n="btn_reset" onclick="resetarBusca()">Mostrar Todos os Serviços</button>
+  </div>
+  
+  <div class="madrasta">
+    <h2 data-i18n="cat_title">Categorias populares</h2>
+    <div class="gemeos">
+      <div class="gemeo-item" onclick="filtrarCategoria('Carpintaria')"><div class="gemeo-icon">🔨</div><span data-i18n="cat_carp">Carpintaria</span></div>
+      <div class="gemeo-item" onclick="filtrarCategoria('Mecânica')"><div class="gemeo-icon">🔧</div><span data-i18n="cat_mec">Mecânica</span></div>
+      <div class="gemeo-item" onclick="filtrarCategoria('Canalização')"><div class="gemeo-icon">🚰</div><span data-i18n="cat_can">Canalização</span></div>
+      <div class="gemeo-item" onclick="filtrarCategoria('Alfaiataria')"><div class="gemeo-icon">🧵</div><span data-i18n="cat_alf">Alfaiataria</span></div>
+      <div class="gemeo-item" onclick="filtrarCategoria('Eletricista')"><div class="gemeo-icon">💡</div><span data-i18n="cat_ele">Eletricista</span></div>
+    </div>
+  </div>
+</main>
+
+<!-- PAINEL DE DEFINIÇÕES -->
+<div class="enteado" id="modalDefinicoes">
+    <div class="enteada">
+        <div class="afunhado-header">
+            <h2 data-i18n="def_modal_title">⚙️ Definições do Sistema</h2>
+            <span class="madrinha" id="closeDefinicoes">&times;</span>
+        </div>
+
+        <div class="padrinho">
+            <label data-i18n="def_lang_label">🌐 Idioma / Lingua:</label>
+            <select id="languageSelect">
+                <option value="pt">Português</option>
+                <option value="emakhua">Emakhua (Makhuwa)</option>
+                <option value="maconde">Maconde (Cimakondu)</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+
+        <div class="padrinho compadre">
+            <span style="font-weight:bold;" data-i18n="def_theme_label">🌙 Modo Escuro:</span>
+            <input type="checkbox" id="darkModeToggle" style="width:20px; height:20px; cursor:pointer;">
+        </div>
+
+        <div class="padrinho compadre">
+            <span style="font-weight:bold;" data-i18n="def_notif_label">🔔 Notificações de Serviços:</span>
+            <input type="checkbox" id="notifToggle" checked style="width:20px; height:20px; cursor:pointer;">
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DE PERFIL -->
+<div class="modal-perfil" id="modalPerfil">
+    <div class="modal-content">
+        <span class="close-modal" id="closeModal">&times;</span>
+        <div class="perfil-container">
+            <div class="badge-azul">
+                <strong id="modalNome">Manuel Latifo</strong>
+                <span id="modalProfissao">Carpinteiro Artesanal</span>
+            </div>
+
+            <div class="perfil-top">
+                <img class="foto-principal" id="modalFoto" src="imagens/perfil.jpeg" alt="Foto Profissional">
+
+                <div class="card-contacto">
+                    <h3 data-i18n="modal_contacts">Contactos</h3>
+                    <a class="btn-azul1" id="modalWhatsapp" href="#" target="_blank">
+                        🟢 WhatsApp
+                    </a>
+                    <a class="ana" id="modalTelefone" href="#">
+                        📞 <span data-i18n="modal_call_direct">Contactar direto</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="grid-baixo">
+                <div>
+                    <div class="box">
+                        <h3 data-i18n="modal_services_prices">Serviços e Preços</h3>
+                        <ul class="lista-servicos" id="modalServicos"></ul>
+                    </div>
+
+                    <div class="box">
+                        <h3 data-i18n="modal_gallery">Galeria de Trabalhos</h3>
+                        <div class="galeria" id="modalGaleria">
+                            <!-- Preenchido dinamicamente por perfil -->
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="box">
+                        <h3 data-i18n="modal_location">Localização</h3>
+                        <div class="map" id="modalLocal">📍 Nacala-Porto</div>
+                        <p style="font-size:0.85rem; margin-top:10px;" id="modalEndereco"></p>
+                    </div>
+
+                    <div class="box">
+                        <h3 data-i18n="modal_schedule">Horário de Atendimento</h3>
+                        <div class="horario">
+                            Segunda - Sexta: 07:00 - 18:00<br>
+                            Sábado: 07:00 - 14:00<br>
+                            Domingo: Fechado<br><br>
+                            <span class="aberto">🟢 <span data-i18n="modal_open_now">Aberto agora</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    &copy; CBN 2026. Todos os direitos reservados | Termos de Uso | Política de Privacidade
+</footer>
+
+<script>
+    const i18n = {
+        pt: {
+            nav_inicio: "Início",
+            nav_comentarios: "Comentários",
+            nav_sobre: "Sobre",
+            nav_definicoes: "Definições",
+            nav_login: "Entrar",
+            nav_cadastrar: "Cadastrar-se",
+            hero_title: "ENCONTRE OS MELHORES SERVIÇOS EM NACALA",
+            hero_subtitle: "Carpinteiros, Mecânicos, Alfaiates e Muito mais",
+            ph_search: "Pesquisar serviço...",
+            opt_all_bairros: "Todos os Bairros",
+            btn_search: "BUSCAR",
+            sec_services_title: "ENCONTRE OS SERVIÇOS QUE PRECISA AGORA",
+            btn_ver_perfil: "Ver perfil",
+            no_res_title: "Nenhum resultado encontrado",
+            no_res_desc: "Não encontramos nenhum profissional correspondente à sua pesquisa por termo ou bairro.",
+            btn_reset: "Mostrar Todos os Serviços",
+            cat_title: "Categorias populares",
+            cat_carp: "Carpintaria",
+            cat_mec: "Mecânica",
+            cat_can: "Canalização",
+            cat_alf: "Alfaiataria",
+            cat_ele: "Eletricista",
+            def_modal_title: "⚙️ Definições do Sistema",
+            def_lang_label: "🌐 Idioma / Lingua:",
+            def_theme_label: "🌙 Modo Escuro:",
+            def_notif_label: "🔔 Notificações de Serviços:",
+            modal_contacts: "Contactos",
+            modal_call_direct: "Contactar direto",
+            modal_services_prices: "Serviços e Preços",
+            modal_gallery: "Galeria de Trabalhos",
+            modal_location: "Localização",
+            modal_schedule: "Horário de Atendimento",
+            modal_open_now: "Aberto agora"
+        },
+        emakhua: {
+            nav_inicio: "Opacerya",
+            nav_comentarios: "Moolumo a atthu",
+            nav_sobre: "Mwaha ohuu",
+            nav_definicoes: "Mavitu a muteko",
+            nav_login: "Okelia",
+            nav_cadastrar: "Ilembihe",
+            hero_title: "PANYANI MUTEKO WOOREERA M'NACALA",
+            hero_subtitle: "Anamateko a ivani, Anamuteko a ikarro ni akina",
+            ph_search: "Panya muteko...",
+            opt_all_bairros: "Mavuro othe",
+            btn_search: "PANYA",
+            sec_services_title: "PHANYA ANAMUTEKO OREERA VANANO",
+            btn_ver_perfil: "Weha mutthu",
+            no_res_title: "Kahuvo mutthu ophanyiwe",
+            no_res_desc: "Khaniweze ophanya mutthu onirawaniha ni opanya wenyu.",
+            btn_reset: "Oramiha Anamuteko Othe",
+            cat_title: "Miteko sikhuuru",
+            cat_carp: "Muteko wa ivani",
+            cat_mec: "Muteko wa ikarro",
+            cat_can: "Muteko wa maasi",
+            cat_alf: "Muteko wa ikuwo",
+            cat_ele: "Muteko wa othuko",
+            def_modal_title: "⚙️ Mavitu a Eprograma",
+            def_lang_label: "🌐 Nthanthu / Nthume:",
+            def_theme_label: "🌙 Epiphi / Modo Escuro:",
+            def_notif_label: "🔔 Ihano sa Miteko:",
+            modal_contacts: "Olumana",
+            modal_call_direct: "Olichana moorukunu",
+            modal_services_prices: "Miteko ni Musurukhu",
+            modal_gallery: "Ipicatju sa Miteko",
+            modal_location: "Mvuro onikalaya",
+            modal_schedule: "Ukati wa Muteko",
+            modal_open_now: "Ootthukuleya vanano"
+        },
+        maconde: {
+            nav_inicio: "Kutunduvanga",
+            nav_comentarios: "Mwaambodya",
+            nav_sobre: "Kwigunya",
+            nav_definicoes: "Kuwandiya",
+            nav_login: "Kwingila",
+            nav_cadastrar: "Kulilembya",
+            hero_title: "LODYA MAVENGO LAAMBONE MU NACALA",
+            hero_subtitle: "Vafundi va imbao, va imotoka na naavakavake",
+            ph_search: "Lodya amavengo...",
+            opt_all_bairros: "Vigano vyamutela",
+            btn_search: "LODYA",
+            sec_services_title: "LODYA VAFUNDI VA MAVENGO VAMBONE AMBI",
+            btn_ver_perfil: "Lola munu",
+            no_res_title: "Akwali munu ampanyike",
+            no_res_desc: "Akaunkula vafundi va kulodya kwako.",
+            btn_reset: "Langasya Vafundi Votang'a",
+            cat_title: "Mavengo la kulyanela",
+            cat_carp: "Ufundi wa imbao",
+            cat_mec: "Ufundi wa imotoka",
+            cat_can: "Ufundi wa memedi",
+            cat_alf: "Ufundi wa idinguwo",
+            cat_ele: "Ufundi wa injeleko"
+        },
+        en: {
+            nav_inicio: "Home",
+            nav_comentarios: "Reviews",
+            nav_sobre: "About",
+            nav_definicoes: "Settings",
+            nav_login: "Login",
+            nav_cadastrar: "Register",
+            hero_title: "FIND THE BEST SERVICES IN NACALA",
+            hero_subtitle: "Carpenters, Mechanics, Tailors and Much More",
+            ph_search: "Search service...",
+            opt_all_bairros: "All Neighborhoods",
+            btn_search: "SEARCH",
+            sec_services_title: "FIND THE SERVICES YOU NEED NOW",
+            btn_ver_perfil: "View Profile",
+            no_res_title: "No results found",
+            no_res_desc: "We couldn't find any professional matching your search.",
+            btn_reset: "Show All Services",
+            cat_title: "Popular Categories",
+            cat_carp: "Carpentry",
+            cat_mec: "Mechanics",
+            cat_can: "Plumbing",
+            cat_alf: "Tailoring",
+            cat_ele: "Electrician",
+            def_modal_title: "⚙️ System Settings",
+            def_lang_label: "🌐 Language:",
+            def_theme_label: "🌙 Dark Mode:",
+            def_notif_label: "🔔 Notifications:",
+            modal_contacts: "Contacts",
+            modal_call_direct: "Direct Call",
+            modal_services_prices: "Services & Prices",
+            modal_gallery: "Work Gallery",
+            modal_location: "Location",
+            modal_schedule: "Working Hours",
+            modal_open_now: "Open Now"
+        }
+    };
+
+    function mudarIdioma(lang) {
+        const dictionary = i18n[lang] || i18n['pt'];
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (dictionary[key]) el.textContent = dictionary[key];
+        });
+        document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+            const key = el.getAttribute('data-i18n-ph');
+            if (dictionary[key]) el.placeholder = dictionary[key];
+        });
+    }
+
+    const prestadoresPadrao = [
+        { 
+            id: 1, 
+            nomeComercial: "MESTRE MANUEL - OFICINA MECÂNICA", 
+            profissao: "Mecânico Geral", 
+            foto: "imagens/meca.jpe", 
+            whatsapp: "https://wa.me/258879258436", 
+            telefone: "tel:+258841234567", 
+            bairro: "Juma", 
+            endereco: "Rua do Comércio", 
+            categoria: "Mecânica", 
+            descricao: "Diagnóstico e reparação geral.", 
+            servicos: [{ nome: "Manutenção", preco: "800 MT" }],
+            galeria: ["imagens/meca1.jpg", "imagens/meca2.jpg", "imagens/meca1.jpg"]
+        },
+        { 
+            id: 2, 
+            nomeComercial: "MESTRE INOQUE - CANALIZAÇÃO", 
+            profissao: "Canalizador", 
+            foto: "imagens/canal.jpe", 
+            whatsapp: "https://wa.me/258871234567", 
+            telefone: "tel:+258849876543", 
+            bairro: "Paraíso 2", 
+            endereco: "Avenida Principal", 
+            categoria: "Canalização", 
+            descricao: "Reparação e instalação de tubagens.", 
+            servicos: [{ nome: "Desentupimento", preco: "700 MT" }],
+            galeria: ["imagens/canalizar1.jpe", "imagens/canaliza2.jpe", "imagens/canalizar3.jpe"]
+        },
+        { 
+            id: 3, 
+            nomeComercial: "MESTRE MANHIÇA - ALFAIATARIA", 
+            profissao: "Alfaiate", 
+            foto: "imagens/cost.jpe", 
+            whatsapp: "https://wa.me/258873334444", 
+            telefone: "tel:+258843334444", 
+            bairro: "Mathapue", 
+            endereco: "Mercado de Mathapue", 
+            categoria: "Alfaiataria", 
+            descricao: "Confecção de vestuário por medida.", 
+            servicos: [{ nome: "Fatos por medida", preco: "3.500 MT" }],
+            galeria: ["imagens/cost.jpe", "imagens/canalizar3.jpe", "imagens/meca.jpe"]
+        },
+        { 
+            id: 4, 
+            nomeComercial: "MESTRE ANTONIO - CARPINTARIA", 
+            profissao: "Carpinteiro", 
+            foto: "imagens/carpinteiro nacala.webp", 
+            whatsapp: "https://wa.me/258879258436", 
+            telefone: "tel:+258841234567", 
+            bairro: "Bloco 1", 
+            endereco: "Rua 5, casa 123", 
+            categoria: "Carpintaria", 
+            descricao: "Mobiliário por medida e reparação.", 
+            servicos: [{ nome: "Montagem", preco: "500 MT" }],
+            galeria: ["imagens/arte.jpe", "imagens/bb.jpe", "imagens/arte.jpe"]
+        }
+    ];
+
+    let listaTodosPrestadores = [];
+
+    function carregarBancoDados() {
+        const salvos = JSON.parse(localStorage.getItem('cbn_prestadores')) || [];
+        
+        // Garantir que prestadores salvos criem galerias dinâmicas personalizadas se não tiverem
+        const salvosComGaleria = salvos.map((p, index) => ({
+            ...p,
+            galeria: p.galeria || [
+                p.foto || 'imagens/perfil.jpeg',
+                prestadoresPadrao[index % prestadoresPadrao.length].foto,
+                'imagens/canalizar1.jpe'
+            ]
+        }));
+
+        listaTodosPrestadores = [...salvosComGaleria, ...prestadoresPadrao];
+        renderizarCards(listaTodosPrestadores);
+        
+        const savedLang = localStorage.getItem('cbn_lang') || 'pt';
+        const savedDark = localStorage.getItem('cbn_dark') === 'true';
+        if(savedDark) document.body.classList.add('dark-mode');
+        if(document.getElementById('darkModeToggle')) document.getElementById('darkModeToggle').checked = savedDark;
+        if(document.getElementById('languageSelect')) document.getElementById('languageSelect').value = savedLang;
+        mudarIdioma(savedLang);
+    }
+
+    function renderizarCards(lista) {
+        const grid = document.getElementById('gridServicos');
+        const noResults = document.getElementById('noResults');
+        grid.innerHTML = "";
+
+        if (lista.length === 0) {
+            noResults.style.display = 'block';
+            return;
+        }
+        noResults.style.display = 'none';
+
+        lista.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'sobrinho';
+            card.innerHTML = `
+                <img src="${item.foto || 'imagens/perfil.jpeg'}" alt="${item.nomeComercial}">
+                <div class="sogro">
+                    <h4>${item.nomeComercial}</h4>
+                    <p class="cunhado">📍 Bairro do ${item.bairro}, Nacala</p>
+                    <p>${item.descricao ? item.descricao.substring(0,60) : ''}...</p>
+                </div>
+                <button class="genro" onclick='abrirPerfil(${JSON.stringify(item)})'>
+                    <span data-i18n="btn_ver_perfil">Ver perfil</span>
+                </button>
+            `;
+            grid.appendChild(card);
+        });
+        const lang = localStorage.getItem('cbn_lang') || 'pt';
+        mudarIdioma(lang);
+    }
+
+    function abrirPerfil(item) {
+        document.getElementById('modalNome').textContent = item.nomeComercial;
+        document.getElementById('modalProfissao').textContent = item.profissao || item.categoria;
+        document.getElementById('modalFoto').src = item.foto || 'imagens/perfil.jpeg';
+        document.getElementById('modalWhatsapp').href = item.whatsapp || '#';
+        document.getElementById('modalTelefone').href = item.telefone || '#';
+        document.getElementById('modalLocal').textContent = "📍 " + (item.bairro ? "Bairro " + item.bairro + ", Nacala-Porto" : "Nacala-Porto");
+        document.getElementById('modalEndereco').textContent = item.endereco || "Nacala-Porto, Moçambique";
+
+        // Renderizar Serviços
+        const ulServicos = document.getElementById('modalServicos');
+        ulServicos.innerHTML = "";
+        if (item.servicos && item.servicos.length > 0) {
+            item.servicos.forEach(s => {
+                const li = document.createElement('li');
+                li.innerHTML = `<span>${s.nome}</span> <strong>${s.preco}</strong>`;
+                ulServicos.appendChild(li);
+            });
+        } else {
+            ulServicos.innerHTML = "<li><span>Serviço Geral</span> <strong>A combinar</strong></li>";
+        }
+
+        // Renderizar Galeria Diferente para cada Perfil
+        const divGaleria = document.getElementById('modalGaleria');
+        divGaleria.innerHTML = "";
+        const fotosGaleria = item.galeria && item.galeria.length > 0 ? item.galeria : [item.foto || 'imagens/perfil.jpeg', 'imagens/canalizar1.jpe', 'imagens/canaliza2.jpe'];
+        
+        fotosGaleria.forEach(fotoSrc => {
+            const img = document.createElement('img');
+            img.src = fotoSrc;
+            img.alt = "Trabalho do Profissional";
+            divGaleria.appendChild(img);
+        });
+
+        document.getElementById('modalPerfil').style.display = 'block';
+    }
+
+    function filtrarCategoria(cat) {
+        const filtrados = listaTodosPrestadores.filter(p => p.categoria && p.categoria.toLowerCase() === cat.toLowerCase());
+        renderizarCards(filtrados);
+    }
+
+    function resetarBusca() {
+        document.getElementById('searchInput').value = "";
+        document.getElementById('bairroSelect').value = "";
+        renderizarCards(listaTodosPrestadores);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        carregarBancoDados();
+
+        const menuIcon = document.getElementById('tio');
+        const navMenu = document.getElementById('navMenu');
+        if (menuIcon && navMenu) {
+            menuIcon.addEventListener('click', () => navMenu.classList.toggle('active'));
+        }
+
+        const modalDefinicoes = document.getElementById('modalDefinicoes');
+        const openDefinicoes = document.getElementById('openDefinicoes');
+        const closeDefinicoes = document.getElementById('closeDefinicoes');
+
+        if (openDefinicoes && modalDefinicoes) {
+            openDefinicoes.addEventListener('click', () => modalDefinicoes.style.display = 'flex');
+        }
+        if (closeDefinicoes && modalDefinicoes) {
+            closeDefinicoes.addEventListener('click', () => modalDefinicoes.style.display = 'none');
+        }
+
+        const closeModal = document.getElementById('closeModal');
+        const modalPerfil = document.getElementById('modalPerfil');
+        if (closeModal && modalPerfil) {
+            closeModal.addEventListener('click', () => modalPerfil.style.display = 'none');
+            window.addEventListener('click', (e) => {
+                if (e.target === modalPerfil) modalPerfil.style.display = 'none';
+                if (e.target === modalDefinicoes) modalDefinicoes.style.display = 'none';
+            });
+        }
+
+        const languageSelect = document.getElementById('languageSelect');
+        if (languageSelect) {
+            languageSelect.addEventListener('change', (e) => {
+                const lang = e.target.value;
+                localStorage.setItem('cbn_lang', lang);
+                mudarIdioma(lang);
+            });
+        }
+
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        if (darkModeToggle) {
+            darkModeToggle.addEventListener('change', (e) => {
+                const isDark = e.target.checked;
+                localStorage.setItem('cbn_dark', isDark);
+                document.body.classList.toggle('dark-mode', isDark);
+            });
+        }
+
+        // Pesquisa
+        const btnBuscar = document.getElementById('btnBuscar');
+        if (btnBuscar) {
+            btnBuscar.addEventListener('click', () => {
+                const termo = document.getElementById('searchInput').value.toLowerCase().trim();
+                const bairroFiltro = document.getElementById('bairroSelect').value;
+
+                const resultados = listaTodosPrestadores.filter(p => {
+                    const matchTermo = !termo || p.nomeComercial.toLowerCase().includes(termo) || p.categoria.toLowerCase().includes(termo) || (p.descricao && p.descricao.toLowerCase().includes(termo));
+                    const matchBairro = !bairroFiltro || p.bairro === bairroFiltro;
+                    return matchTermo && matchBairro;
+                });
+                renderizarCards(resultados);
+            });
+        }
+    });
+</script>
+</body>
+</html>

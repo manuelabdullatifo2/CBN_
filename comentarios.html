@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBN - CENTRAL BUSINESS NACALA</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--header-bg);
+            padding: 10px 20px;
+            position: relative;
+            width: 100%;
+        }
+
+        .mae {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .irmao img {
+            width: 180px;
+            height: auto;
+            max-height: 70px;
+            object-fit: contain;
+        }
+
+        #tio {
+            display: none;
+            cursor: pointer;
+        }
+
+        #tio img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .tia {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .tia a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            opacity: 0.95;
+            transition: opacity 0.2s;
+        }
+
+        .tia a:hover {
+            opacity: 1;
+        }
+
+        .tia a.primo {
+            font-weight: 700;
+            border-bottom: 2px solid white;
+            padding-bottom: 3px;
+        }
+
+        .primo2 {
+            background-color: rgb(4, 4, 82);
+            color: white !important;
+            padding: 8px 14px !important;
+            border-radius: 8px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .prima {
+            background-color: blue;
+            color: white !important;
+            padding: 8px 14px !important;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .avo {
+            background: linear-gradient(180deg, rgb(146, 146, 237), rgb(169, 229, 229));
+            text-align: center;
+            padding: 40px 6%;
+            color: #0f2f66;
+        }
+
+        .avo h1 { 
+            font-size: 2.2rem; 
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .avo p {
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .bisavo {
+            max-width: 1050px; 
+            margin: 0 auto; 
+            padding: 25px 5% 40px;
+            width: 100%;
+        }
+
+        .familia {
+            background: var(--card-bg); 
+            border-radius: 16px; 
+            padding: 24px; 
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .familia h2 { 
+            font-size: 1.2rem; 
+            margin-bottom: 16px;
+            color: var(--title-color);
+        }
+
+        .neto {
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 16px;
+        }
+
+        label {
+            font-size: 0.85rem; 
+            font-weight: 600; 
+            color: var(--text-color); 
+            display: block; 
+            margin-bottom: 6px;
+        }
+
+        input, select, textarea {
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid rgb(206, 206, 231); 
+            border-radius: 10px;  
+            font-size: 0.9rem;
+            outline: none;
+            background: #fff;
+            color: #333;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: darkblue; 
+            box-shadow: 0 0 0 3px rgba(173, 173, 247, 0.5);
+        }
+
+        textarea {
+            height: 90px; 
+            resize: vertical;
+        }
+
+        .sobrinho {
+            font-size: 1.5rem; 
+            cursor: pointer; 
+            letter-spacing: 4px; 
+            user-select: none;
+            color: #ffc107;
+        }
+
+        .sogro {
+            background: darkblue; 
+            color: white; 
+            border: none; 
+            padding: 12px 25px; 
+            border-radius: 10px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            margin-top: 15px; 
+            display: block;
+            margin-left: auto;
+            transition: background 0.2s;
+        }
+
+        .sogro:hover {
+            background: #0000aa;
+        }
+
+        .cunhado {
+            margin: 35px 0 16px; 
+            font-weight: 800; 
+            color: var(--title-color); 
+            font-size: 1.3rem;
+        }
+
+        .gemeos {
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 16px;
+        }
+
+        .gemeo-card {
+            background: var(--card-bg); 
+            border-radius: 14px; 
+            padding: 18px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .gemeo-top {
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+        }
+
+        .genro {
+            display: flex; 
+            gap: 10px; 
+            align-items: center;
+        }
+
+        .nora {
+            background: rgb(229, 210, 104);
+            width: 42px; 
+            height: 42px; 
+            border-radius: 50%; 
+            display: grid;
+            place-items: center; 
+            color: white; 
+            font-weight: 800;
+        }
+
+        .padrasto b {
+            font-size: 0.9rem; 
+            color: var(--title-color); 
+            display: block;
+        }
+
+        .padrasto span {
+            font-size: 0.8rem; 
+            color: var(--subtext-color);
+        }
+
+        .madrinha { 
+            font-size: 0.9rem;
+        }
+
+        .tio-badge {
+            margin: 10px 0; 
+            background: #eef4ff; 
+            color: darkblue; 
+            font-size: 0.75rem; 
+            font-weight: 600; 
+            padding: 5px 10px; 
+            border-radius: 20px; 
+            display: inline-block;
+        }
+
+        .tio-badge.site-badge {
+            background: #e0f2fe;
+            color: #0369a1;
+        }
+
+        .gemeo-card p {
+            font-size: 0.88rem; 
+            color: var(--text-color); 
+            line-height: 1.5;
+        }
+
+        footer {
+            padding: 20px;
+            color: white;
+            text-align: center;
+            font-size: 0.85rem;
+            background-color: rgb(72, 72, 187);
+            margin-top: auto;
+        }
+
+        :root {
+            --bg-body: #f4f6f9;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --header-bg: rgb(15, 15, 96);
+            --title-color: #0f2f66;
+            --subtext-color: #555;
+        }
+
+        body.dark-mode {
+            --bg-body: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --header-bg: #090938;
+            --title-color: #8bb4f8;
+            --subtext-color: #aaa;
+        }
+
+        /* Modal de Definições */
+        .enteado {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .enteada {
+            background: var(--card-bg);
+            color: var(--text-color);
+            width: 100%;
+            max-width: 420px;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .afunhado-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        .madrinha-close { font-size: 24px; cursor: pointer; }
+        .padrinho { margin-bottom: 20px; }
+        .padrinho select { width: 100%; padding: 10px; border-radius: 6px; }
+        .compadre { display: flex; justify-content: space-between; align-items: center; }
+
+        @media (max-width: 768px) {
+            #tio { display: block; }
+            .tia {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%; left: 0;
+                width: 100%;
+                background-color: rgb(15, 15, 96);
+                padding: 20px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+                z-index: 1000;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            .tia.active { display: flex; }
+            .gemeos, .neto { grid-template-columns: 1fr; }
+            .neto > div[style*="grid-column"] { grid-column: span 1 !important; }
+            .avo h1 { font-size: 1.7rem; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="mae">
+        <div id="tio"><img src="imagens/icone-removebg-preview.png" alt="Menu"></div>
+        <div class="irmao"><img src="imagens/Gemini_Generated_Image_lz5nrtlz5nrtlz5n-removebg-preview.png" alt="CBN Logo"></div>
+    </div>
+
+    <nav class="tia" id="navMenu">
+        <a href="pagina principal.html"><span class="nav-icon">🏠</span> <span data-i18n="nav_inicio">Início</span></a>
+        <a href="comentarios.html" class="primo"><span class="nav-icon">💬</span> <span data-i18n="nav_comentarios">Comentários</span></a>
+        <a href="sobre.html"><span class="nav-icon">ℹ️</span> <span data-i18n="nav_sobre">Sobre</span></a>
+        <button class="primo2" id="openDefinicoes"><span class="nav-icon">⚙️</span> <span data-i18n="nav_definicoes">Definições</span></button>
+
+        <a href="Entrar.html" class="prima"><span class="nav-icon">🔑</span> <span data-i18n="nav_login">Entrar</span></a>
+        <a href="Opcoes.html" class="prima"><span class="nav-icon">👤</span> <span data-i18n="nav_cadastrar">Cadastrar-se</span></a>
+    </nav>
+</header>
+
+<div class="enteado" id="modalDefinicoes">
+    <div class="enteada">
+        <div class="afunhado-header">
+            <h2 data-i18n="def_modal_title">⚙️ Definições do Sistema</h2>
+            <span class="madrinha-close" id="closeDefinicoes">&times;</span>
+        </div>
+
+        <div class="padrinho">
+            <label data-i18n="def_lang_label">🌐 Idioma / Lingua:</label>
+            <select id="languageSelect">
+                <option value="pt">Português</option>
+                <option value="emakhua">Emakhua (Makhuwa)</option>
+                <option value="maconde">Maconde (Cimakondu)</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+
+        <div class="padrinho compadre">
+            <span style="font-weight:bold;" data-i18n="def_theme_label">🌙 Modo Escuro:</span>
+            <input type="checkbox" id="darkModeToggle" style="width:20px; height:20px; cursor:pointer;">
+        </div>
+
+        <div class="padrinho compadre">
+            <span style="font-weight:bold;" data-i18n="def_notif_label">🔔 Notificações:</span>
+            <input type="checkbox" id="notifToggle" style="width:20px; height:20px; cursor:pointer;">
+        </div>
+    </div>
+</div>
+    
+<main>
+    <section class="avo">
+        <h1 data-i18n="comments_main_title">Comentários dos Clientes</h1>
+        <p data-i18n="comments_subtitle">Veja o que falam sobre os profissionais e a plataforma CBN</p>
+    </section>
+
+    <div class="bisavo">
+        <div class="familia">
+            <h2 data-i18n="form_comment_title">Deixe seu comentário 💬</h2>
+
+            <form id="formComentario">
+                <div class="neto">
+                    <div>
+                        <label data-i18n="label_name">Seu nome</label>
+                        <input type="text" id="nomeInput" placeholder="Seu nome" required>
+                    </div>
+
+                    <div>
+                        <label data-i18n="label_comment_type">Tipo de Comentário</label>
+                        <select id="tipoComentario" required>
+                            <option value="profissional" data-i18n="opt_prof">Sobre um Profissional</option>
+                            <option value="plataforma" data-i18n="opt_plat">Sobre o Site / Plataforma CBN</option>
+                        </select>
+                    </div>
+
+                    <div id="boxProfissional">
+                        <label data-i18n="label_prof">Profissional</label>
+                        <select id="profissionalSelect">
+                            <option value="" data-i18n="opt_select_prof">Selecione o Profissional</option>
+                        </select>
+                    </div>
+
+                    <div style="grid-column: span 2;">
+                        <label data-i18n="label_rating">Sua avaliação</label>
+                        <div class="sobrinho" id="starsSelect" data-rating="5">⭐⭐⭐⭐⭐</div>
+                    </div>
+
+                    <div style="grid-column: span 2;">
+                        <label data-i18n="label_message">Seu comentário</label>
+                        <textarea id="mensagemInput" placeholder="Conte como foi sua experiência..." required data-i18n-ph="ph_message"></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="sogro" data-i18n="comments_pub">Publicar Comentário</button>
+            </form>
+        </div>
+
+        <h2 class="cunhado" data-i18n="comments_recent">Comentários recentes</h2>
+
+        <div class="gemeos" id="listaComentarios"></div>
+    </div>
+</main>
+
+<footer>
+    &copy; CBN 2026. Todos os direitos reservados | Termos de Uso | Política de Privacidade
+</footer> 
+
+<script>
+    // Dicionário de Traduções Global
+    const i18nGlobal = {
+        pt: {
+            nav_inicio: "Início",
+            nav_comentarios: "Comentários",
+            nav_sobre: "Sobre",
+            nav_definicoes: "Definições",
+            nav_login: "Entrar",
+            nav_cadastrar: "Cadastrar-se",
+            def_modal_title: "⚙️ Definições do Sistema",
+            def_lang_label: "🌐 Idioma / Lingua:",
+            def_theme_label: "🌙 Modo Escuro:",
+            def_notif_label: "🔔 Notificações:",
+            comments_main_title: "Comentários dos Clientes",
+            comments_subtitle: "Veja o que falam sobre os profissionais e a plataforma CBN",
+            form_comment_title: "Deixe seu comentário 💬",
+            label_name: "Seu nome",
+            label_comment_type: "Tipo de Comentário",
+            opt_prof: "Sobre um Profissional",
+            opt_plat: "Sobre o Site / Plataforma CBN",
+            label_prof: "Profissional",
+            opt_select_prof: "Selecione o Profissional",
+            label_rating: "Sua avaliação",
+            label_message: "Seu comentário",
+            ph_message: "Conte como foi sua experiência...",
+            comments_pub: "Publicar Comentário",
+            comments_recent: "Comentários recentes"
+        },
+        emakhua: {
+            nav_inicio: "Opacerya",
+            nav_comentarios: "Moolumo a atthu",
+            nav_sobre: "Mwaha ohuu",
+            nav_definicoes: "Mavitu a muteko",
+            nav_login: "Okelia",
+            nav_cadastrar: "Ilembihe",
+            def_modal_title: "⚙️ Mavitu a Eprograma",
+            def_lang_label: "🌐 Nthanthu / Nthume:",
+            def_theme_label: "🌙 Epiphi / Modo Escuro:",
+            def_notif_label: "🔔 Ihano sa Miteko:",
+            comments_main_title: "Moolumo a Anamakula",
+            comments_subtitle: "Weha sa anamateko ni eprograma CBN",
+            form_comment_title: "Olemba Moolumo wanyu 💬",
+            label_name: "Nina nanyu",
+            label_comment_type: "Makatelo a Moolumo",
+            opt_prof: "Mooh ora Namuteko",
+            opt_plat: "Mooh ora Eprograma CBN",
+            label_prof: "Namuteko",
+            opt_select_prof: "Nthanna Namuteko",
+            label_rating: "Oweha wanyu",
+            label_message: "Moolumo wanyu",
+            ph_message: "Mulumbe mootaka wanyu...",
+            comments_pub: "Olemba Moolumo",
+            comments_recent: "Moolumo ohesa"
+        },
+        maconde: {
+            nav_inicio: "Kutunduvanga",
+            nav_comentarios: "Mwaambodya",
+            nav_sobre: "Kwigunya",
+            nav_definicoes: "Kuwandiya",
+            nav_login: "Kwingila",
+            nav_cadastrar: "Kulilembya",
+            def_modal_title: "⚙️ Kuwandiya Kwa Ntengo",
+            def_lang_label: "🌐 Injogodya / Lulimi:",
+            def_theme_label: "🌙 Injinji / Mode Escuro:",
+            def_notif_label: "🔔 Dimanga dya Mavengo:",
+            comments_main_title: "Mwaambodya wa Vanu",
+            comments_subtitle: "Lola mwaambodya wa vafundi na CBN",
+            form_comment_title: "Wandika Mwaambodya wako 💬",
+            label_name: "Lina lyako",
+            label_comment_type: "Litala lya Mwaambodya",
+            opt_prof: "Mwaambodya wa Fundi",
+            opt_plat: "Mwaambodya wa WebSite",
+            label_prof: "Fundi",
+            opt_select_prof: "Lodya Fundi",
+            label_rating: "Kulola kwako",
+            label_message: "Mwaambodya wako",
+            ph_message: "Wandika utumwa wako...",
+            comments_pub: "Wandika Mwaambodya",
+            comments_recent: "Mwaambodya waambi"
+        },
+        en: {
+            nav_inicio: "Home",
+            nav_comentarios: "Reviews",
+            nav_sobre: "About",
+            nav_definicoes: "Settings",
+            nav_login: "Login",
+            nav_cadastrar: "Register",
+            def_modal_title: "⚙️ System Settings",
+            def_lang_label: "🌐 Language:",
+            def_theme_label: "🌙 Dark Mode:",
+            def_notif_label: "🔔 Notifications:",
+            comments_main_title: "Customer Reviews",
+            comments_subtitle: "See what people say about professionals and the CBN platform",
+            form_comment_title: "Leave your review 💬",
+            label_name: "Your Name",
+            label_comment_type: "Review Type",
+            opt_prof: "About a Professional",
+            opt_plat: "About CBN Platform",
+            label_prof: "Professional",
+            opt_select_prof: "Select Professional",
+            label_rating: "Your Rating",
+            label_message: "Your Comment",
+            ph_message: "Tell us about your experience...",
+            comments_pub: "Publish Review",
+            comments_recent: "Recent Reviews"
+        }
+    };
+
+    function mudarIdiomaGlobal(lang) {
+        const dictionary = i18nGlobal[lang] || i18nGlobal['pt'];
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (dictionary[key]) {
+                el.textContent = dictionary[key];
+            }
+        });
+        document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+            const key = el.getAttribute('data-i18n-ph');
+            if (dictionary[key]) {
+                el.placeholder = dictionary[key];
+            }
+        });
+    }
+
+    // Carregar profissionais cadastrados no select
+    function carregarProfissionaisSelect() {
+        const select = document.getElementById('profissionalSelect');
+        const prestadoresSalvos = JSON.parse(localStorage.getItem('cbn_prestadores')) || [];
+        
+        // Profissionais padrão iniciais
+        const profissionaisPadrao = [
+            "Assane - Mecânico",
+            "Manuel - Carpintaria",
+            "Inoque - Canalização",
+            "Manhiça - Alfaiataria",
+            "Dinis - Eletricista"
+        ];
+
+        // Adicionar prestadores cadastrados via localStorage se houver
+        const nomesPrestadores = prestadoresSalvos.map(p => p.nomeComercial || p.nome);
+        const listaFinal = [...new Set([...profissionaisPadrao, ...nomesPrestadores])];
+
+        select.innerHTML = `<option value="" data-i18n="opt_select_prof">Selecione o Profissional</option>`;
+        listaFinal.forEach(nome => {
+            const opt = document.createElement('option');
+            opt.value = nome;
+            opt.textContent = nome;
+            select.appendChild(opt);
+        });
+    }
+
+    // Gerir Comentários guardados no localStorage
+    function carregarComentarios() {
+        const listaComentarios = document.getElementById('listaComentarios');
+        const comentariosSalvos = JSON.parse(localStorage.getItem('cbn_comentarios')) || [];
+
+        const comentariosPadrao = [
+            {
+                nome: "Celso Bambo",
+                data: "28 set 2026",
+                rating: 5,
+                tipo: "plataforma",
+                badge: "🌐 Plataforma CBN",
+                mensagem: "Excelente iniciativa! Encontrei um canalizador no meu bairro em menos de 5 minutos através do site.",
+                corAvatar: "#0284c7"
+            },
+            {
+                nome: "Arlinda Ambrósio",
+                data: "20 set 2026",
+                rating: 4,
+                tipo: "profissional",
+                badge: "Mecânico - Manuel Latifo",
+                mensagem: "Profissional muito atencioso e resolveu o problema do meu carro rapidamente. Recomendo!",
+                corAvatar: "rgb(229, 210, 104)"
+            },
+            {
+                nome: "Fania M",
+                data: "22 set 2026",
+                rating: 3,
+                tipo: "profissional",
+                badge: "Carpinteiro - MANHIÇA",
+                mensagem: "Trabalho de ótima qualidade, entrega no prazo. Resultado final ficou excelente.",
+                corAvatar: "rgb(229, 210, 104)"
+            },
+            {
+                nome: "Assane Bachir",
+                data: "27 set 2026",
+                rating: 4,
+                tipo: "profissional",
+                badge: "Canalizador - INOQUE",
+                mensagem: "Resolveu o vazamento em menos de uma hora, honesto e preço justo. Recomendo!",
+                corAvatar: "rgb(229, 210, 104)"
+            }
+        ];
+
+        const todosComentarios = [...comentariosSalvos, ...comentariosPadrao];
+        listaComentarios.innerHTML = "";
+
+        todosComentarios.forEach(c => {
+            const iniciais = c.nome.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase();
+            const estrelasStr = '⭐'.repeat(c.rating);
+
+            const card = document.createElement('div');
+            card.className = 'gemeo-card';
+            card.innerHTML = `
+                <div class="gemeo-top">
+                    <div class="genro">
+                        <div class="nora" style="background:${c.corAvatar || 'rgb(229, 210, 104)'};">${iniciais}</div>
+                        <div class="padrasto"><b>${c.nome}</b><span>${c.data}</span></div>
+                    </div>
+                    <div class="madrinha">${estrelasStr}</div>
+                </div>
+                <div class="${c.tipo === 'plataforma' ? 'tio-badge site-badge' : 'tio-badge'}">${c.badge}</div>
+                <p>${c.mensagem}</p>
+            `;
+            listaComentarios.appendChild(card);
+        });
+    }
+
+    // Inicialização da página
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('cbn_lang') || 'pt';
+        const savedDark = localStorage.getItem('cbn_dark') === 'true';
+        const savedNotif = localStorage.getItem('cbn_notif') !== 'false';
+
+        if (savedDark) document.body.classList.add('dark-mode');
+
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const languageSelect = document.getElementById('languageSelect');
+        const notifToggle = document.getElementById('notifToggle');
+
+        if (darkModeToggle) darkModeToggle.checked = savedDark;
+        if (languageSelect) languageSelect.value = savedLang;
+        if (notifToggle) notifToggle.checked = savedNotif;
+
+        mudarIdiomaGlobal(savedLang);
+        carregarProfissionaisSelect();
+        carregarComentarios();
+
+        // Menu Hambúrguer
+        const menuIcon = document.getElementById('tio');
+        const navMenu = document.getElementById('navMenu');
+        if (menuIcon && navMenu) {
+            menuIcon.addEventListener('click', () => navMenu.classList.toggle('active'));
+        }
+
+        // Modal Definições
+        const modalDefinicoes = document.getElementById('modalDefinicoes');
+        const openDefinicoes = document.getElementById('openDefinicoes');
+        const closeDefinicoes = document.getElementById('closeDefinicoes');
+
+        if (openDefinicoes && modalDefinicoes) {
+            openDefinicoes.addEventListener('click', () => modalDefinicoes.style.display = 'flex');
+        }
+        if (closeDefinicoes && modalDefinicoes) {
+            closeDefinicoes.addEventListener('click', () => modalDefinicoes.style.display = 'none');
+        }
+
+        if (languageSelect) {
+            languageSelect.addEventListener('change', (e) => {
+                const lang = e.target.value;
+                localStorage.setItem('cbn_lang', lang);
+                mudarIdiomaGlobal(lang);
+            });
+        }
+
+        if (darkModeToggle) {
+            darkModeToggle.addEventListener('change', (e) => {
+                const isDark = e.target.checked;
+                localStorage.setItem('cbn_dark', isDark);
+                document.body.classList.toggle('dark-mode', isDark);
+            });
+        }
+
+        // Alternar select de profissionais
+        const tipoComentario = document.getElementById('tipoComentario');
+        const boxProfissional = document.getElementById('boxProfissional');
+        const profissionalSelect = document.getElementById('profissionalSelect');
+
+        tipoComentario.addEventListener('change', () => {
+            if (tipoComentario.value === 'plataforma') {
+                boxProfissional.style.display = 'none';
+                profissionalSelect.removeAttribute('required');
+            } else {
+                boxProfissional.style.display = 'block';
+                profissionalSelect.setAttribute('required', 'required');
+            }
+        });
+
+        // Sistema de estrelas
+        const starsSelect = document.getElementById('starsSelect');
+        const starOptions = ["⭐", "⭐⭐", "⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐⭐⭐"];
+        let currentRating = 5;
+
+        starsSelect.addEventListener('click', () => {
+            currentRating = currentRating >= 5 ? 1 : currentRating + 1;
+            starsSelect.textContent = starOptions[currentRating - 1];
+            starsSelect.setAttribute('data-rating', currentRating);
+        });
+
+        // Envio do formulário de comentário
+        const formComentario = document.getElementById('formComentario');
+        formComentario.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const nome = document.getElementById('nomeInput').value.trim();
+            const tipo = tipoComentario.value;
+            const profissional = profissionalSelect.value;
+            const mensagem = document.getElementById('mensagemInput').value.trim();
+            const rating = parseInt(starsSelect.getAttribute('data-rating'));
+
+            if (!nome || !mensagem || (tipo === 'profissional' && !profissional)) {
+                alert("Por favor, preencha todos os campos obrigatórios.");
+                return;
+            }
+
+            const dataAtual = new Date().toLocaleDateString('pt-MZ', {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric'
+            });
+
+            const badgeTexto = tipo === 'plataforma' ? '🌐 Plataforma CBN' : profissional;
+            
+            const novoComentario = {
+                nome: nome,
+                data: dataAtual,
+                rating: rating,
+                tipo: tipo,
+                badge: badgeTexto,
+                mensagem: mensagem,
+                corAvatar: tipo === 'plataforma' ? '#0284c7' : 'rgb(229, 210, 104)'
+            };
+
+            // Salvar no localStorage
+            let comentariosSalvos = JSON.parse(localStorage.getItem('cbn_comentarios')) || [];
+            comentariosSalvos.unshift(novoComentario);
+            localStorage.setItem('cbn_comentarios', JSON.stringify(comentariosSalvos));
+
+            carregarComentarios();
+            formComentario.reset();
+            boxProfissional.style.display = 'block';
+            currentRating = 5;
+            starsSelect.textContent = "⭐⭐⭐⭐⭐";
+            starsSelect.setAttribute('data-rating', '5');
+
+            alert("Comentário publicado com sucesso!");
+        });
+    });
+</script>
+</body>
+</html>
